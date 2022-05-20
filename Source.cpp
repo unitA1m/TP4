@@ -1,42 +1,115 @@
 #include <iostream>
-#include <ctime>
-using namespace std;
+#include <time.h>
 
-template <typename T>
-T differ(T size) {
+int IsInt() {
+	int digit;
+	while (true) {
+		std::cin >> digit;
+		if (std::cin.fail() || std::cin.get() != '\n') {
+			std::cout << "Некорректный ввод, пожалуйста, попробуйте снова>>";
+			std::cin.clear();
+			std::cin.ignore(32767, '\n');
+			continue;
+		}
+		return digit;
+	}
+}
+
+template <typename Mas>
+void Inverse(Mas* arr, int Number_of_elements) {
 	
-	T* arr = new T[size];
-	for (T i = 0; i < size; i++) {
-		arr[i] = 50 + rand() % 50;
-		cout << arr[i] << endl;
-	}
-	cout << "Âñåãî ýëåìåíòîâ â ìàññèâå:" << size << endl;
-	if (arr) {
-		cout << "Ìàññèâ ñîçäàí!" << endl;
-	}
-	else cout << "Error" << endl;
-	T diff = 0;
-	T min, max;
-	min = arr[0];
-	max = arr[1];
-	for (T i = 0; i < size-1; i++) {
-		if (min > arr[i + 1]) {
-			min = arr[i + 1];
-		}
-		if (max < arr[i + 1]) {
-			max = arr[i + 1];
+	 
+	double min = arr[0]; double max = arr[0];
+	for (int i = 1; i < Number_of_elements; i++)
+	{
+		if (min > arr[i])
+		{
+			min = arr[i];
 		}
 	}
-	diff = max - min;
-	delete [] arr;
-	return diff;
+	for (int j = 1; j < Number_of_elements; j++)
+	{
+		if (max < arr[j])
+		{
+			max = arr[j];
+		}
+	}
+	std::cout << std::endl;
+	std::cout << max - min;
+	
 }
 
 int main() {
-	setlocale(0, "rus");
-	int size;
+	setlocale(LC_ALL, "ru");
 	srand(time(NULL));
-
-	size = 50+ rand()%10;
-	cout<<"Ðàçíèöà ìåæäó ìàêñèìàëüíûì è ìèíèìàëüíûì ýëåìåíòîì: " << differ(size) << endl;
+	int Work = 1;
+	int Number_of_elements = rand() % 50 + 50;
+	std::cout << "Выберите тип данных массива для работы: " << std::endl;
+	std::cout << "1. Integer" << std::endl;
+	std::cout << "2. Float" << std::endl;
+	std::cout << "3. Double" << std::endl;
+	std::cout << ">>";
+	int Typename_choice = IsInt();
+	switch (Typename_choice) {
+	case 1:
+	{
+		int* Arr_int = new int[Number_of_elements];
+		std::cout << "Исходный массив типа integer на " << Number_of_elements << " элементов:" << std::endl;
+		for (int i = 0; i < Number_of_elements; i++) {
+			Arr_int[i] = rand() % 50 + 50;
+			std::cout << Arr_int[i] << "    ";
+		}
+		try {
+			Inverse(Arr_int, Number_of_elements);
+		}
+		catch (const char* message) {
+			std::cout << message << std::endl;
+		}
+		delete[] Arr_int;
+		break;
+	}
+	
+	case 2:
+	{
+		float* Arr_float = new float[Number_of_elements];
+		std::cout << "Исходный массив типа float на " << Number_of_elements << " элементов:" << std::endl;
+		for (int i = 0; i < Number_of_elements; i++) {
+			Arr_float[i] = static_cast <float>(rand()) / static_cast <float>(RAND_MAX / 50 + 50);
+			std::cout << Arr_float[i] << "    ";
+		}
+		try {
+			Inverse(Arr_float, Number_of_elements);
+		}
+		catch (const char* message) {
+			std::cout << message << std::endl;
+		}
+		delete[] Arr_float;
+		break;
+	}
+	case 3:
+	{
+		double* Arr_double = new double[Number_of_elements];
+		std::cout << "Исходный массив типа double на " << Number_of_elements << " элементов:" << std::endl;
+		for (int i = 0; i < Number_of_elements; i++) {
+			Arr_double[i] = static_cast <double>(rand()) / static_cast <double>(RAND_MAX / 50 + 50);
+			std::cout << Arr_double[i] << "    ";
+		}
+		try
+		{
+			Inverse(Arr_double, Number_of_elements);
+		}
+		catch (const char* message)
+		{
+			std::cout << message << std::endl;
+		}
+		delete[] Arr_double;
+		break;
+	}
+	default:
+	{
+		std::cout << "Выберите существующий пункт меню." << std::endl;
+		system("pause");
+	}
+	}
+	return 0;
 }
