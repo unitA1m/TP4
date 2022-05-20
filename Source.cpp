@@ -10,9 +10,9 @@ T differ(T size) {
 		arr[i] = 50 + rand() % 50;
 		cout << arr[i] << endl;
 	}
-	cout << "Âñåãî ýëåìåíòîâ â ìàññèâå:" << size << endl;
+	cout << "Ã‚Ã±Ã¥Ã£Ã® Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã²Ã®Ã¢ Ã¢ Ã¬Ã Ã±Ã±Ã¨Ã¢Ã¥:" << size << endl;
 	if (arr) {
-		cout << "Ìàññèâ ñîçäàí!" << endl;
+		cout << "ÃŒÃ Ã±Ã±Ã¨Ã¢ Ã±Ã®Ã§Ã¤Ã Ã­!" << endl;
 	}
 	else cout << "Error" << endl;
 	T diff = 0;
@@ -28,7 +28,7 @@ T differ(T size) {
 		}
 	}
 	diff = max - min;
-
+	delete [] arr;
 	return diff;
 }
 
@@ -38,5 +38,5 @@ int main() {
 	srand(time(NULL));
 
 	size = 50+ rand()%10;
-	cout<<"Ðàçíèöà ìåæäó ìàêñèìàëüíûì è ìèíèìàëüíûì ýëåìåíòîì: " << differ(size) << endl;
+	cout<<"ÃÃ Ã§Ã­Ã¨Ã¶Ã  Ã¬Ã¥Ã¦Ã¤Ã³ Ã¬Ã ÃªÃ±Ã¨Ã¬Ã Ã«Ã¼Ã­Ã»Ã¬ Ã¨ Ã¬Ã¨Ã­Ã¨Ã¬Ã Ã«Ã¼Ã­Ã»Ã¬ Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã²Ã®Ã¬: " << differ(size) << endl;
 }
