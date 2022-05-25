@@ -1,22 +1,9 @@
 #include <iostream>
 #include <time.h>
 
-int IsInt() {
-	int digit;
-	while (true) {
-		std::cin >> digit;
-		if (std::cin.fail() || std::cin.get() != '\n') {
-			std::cout << "Некорректный ввод, пожалуйста, попробуйте снова>>";
-			std::cin.clear();
-			std::cin.ignore(32767, '\n');
-			continue;
-		}
-		return digit;
-	}
-}
 
 template <typename Mas>
-void Inverse(Mas* arr, int Number_of_elements) {
+void minMax(Mas* arr, int Number_of_elements) {
 	
 	 
 	double min = arr[0]; double max = arr[0];
@@ -49,7 +36,7 @@ int main() {
 	std::cout << "2. Float" << std::endl;
 	std::cout << "3. Double" << std::endl;
 	std::cout << ">>";
-	int Typename_choice = IsInt();
+	int Typename_choice; std::cin>>Typename_choice;
 	switch (Typename_choice) {
 	case 1:
 	{
@@ -60,7 +47,7 @@ int main() {
 			std::cout << Arr_int[i] << "    ";
 		}
 		try {
-			Inverse(Arr_int, Number_of_elements);
+			minMax(Arr_int, Number_of_elements);
 		}
 		catch (const char* message) {
 			std::cout << message << std::endl;
@@ -78,7 +65,7 @@ int main() {
 			std::cout << Arr_float[i] << "    ";
 		}
 		try {
-			Inverse(Arr_float, Number_of_elements);
+			minMax(Arr_float, Number_of_elements);
 		}
 		catch (const char* message) {
 			std::cout << message << std::endl;
@@ -96,7 +83,7 @@ int main() {
 		}
 		try
 		{
-			Inverse(Arr_double, Number_of_elements);
+			minMax(Arr_double, Number_of_elements);
 		}
 		catch (const char* message)
 		{
